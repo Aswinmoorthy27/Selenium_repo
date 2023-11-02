@@ -8,29 +8,38 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class JavascriptExecutorTest {
 
 	public void js() throws InterruptedException {
-		
-		//driver
+
+		// driver
 		ChromeDriver driver = new ChromeDriver();
-		
-		//maximize
+
+		// maximize
 		driver.manage().window().maximize();
-		
-		//Url
+
+		// Url
 		driver.get("https://qavalidation.com/demo-form/");
-		
-		//Webelement
+
+		// Webelements
 		WebElement fullname = driver.findElement(By.id("g4072-fullname"));
 		WebElement Email = driver.findElement(By.id("g4072-email"));
 		WebElement Phonenumber = driver.findElement(By.id("g4072-phonenumber"));
-		WebElement Submit =driver.findElement(By.xpath("//button[text()='Submit!']"));
+		WebElement Submit = driver.findElement(By.xpath("//button[text()='Submit!']"));
+		WebElement Radioactive = driver.findElement(By.xpath("//input[@value='4']"));
+		WebElement Checkbox = driver.findElement(By.xpath("//input[@value='Automation testing']"));
 
-		
-		//JS Executor
+		// JS Executor
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].value='Aswin';", fullname);
 		js.executeScript("arguments[0].value='Aswin.moorthy@gmail.com';", Email);
 		js.executeScript("arguments[0].value='9789189002';", Phonenumber);
-
+		
+                //Using JS Clicking Radioactive button
+		Thread.sleep(2000);
+		js.executeScript("arguments[0].click()", Radioactive);
+		
+	        //Using JS Clicking Checkbox button
+		Thread.sleep(2000);	
+		js.executeScript("arguments[0].click()", Checkbox);
+		
 		// scroll down
 		js.executeScript("window.scrollBy(0,850)", "");
 
@@ -41,9 +50,9 @@ public class JavascriptExecutorTest {
 
 		// again scroll down
 		js.executeScript("window.scrollBy(0,850)", "");
-		
-		//submit
-		js.executeScript("arguments[0].click()",Submit );
+
+		// submit
+		js.executeScript("arguments[0].click()", Submit);
 
 	}
 
